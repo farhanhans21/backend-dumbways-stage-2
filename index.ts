@@ -5,8 +5,8 @@ import dotenv from "dotenv";
 import swaggerUi from "swagger-ui-express";
 // import swaggerDocument from "sw"
 
-import { errorMiddleware } from "./middlewares/errorMiddleware";
-import { v1 } from "./routes/v1";
+import { errorMiddleware } from "./src/middlewares/errorMiddleware";
+import { v1 } from "./src/routes/v1";
 import bodyParser from "body-parser";
 
 dotenv.config();
