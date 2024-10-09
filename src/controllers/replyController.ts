@@ -38,3 +38,4 @@ class ReplyController {
     }
   }
 }
+export default new ReplyController();

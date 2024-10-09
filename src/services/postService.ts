@@ -90,7 +90,7 @@ class PostService {
     return await prisma.post.create({
       data:{
         ...data,
-        authorId: authorId, 
+        authorId, 
       }
     });
   };

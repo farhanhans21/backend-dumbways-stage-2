@@ -36,8 +36,13 @@ class AuthService {
   async  login(
     data: LoginDTO
   ): Promise<{ user: Omit<Users, "password">; token: string }> {
-    const user = await prisma.users.findUnique({
-      where: { email: data.email },
+    const user = await prisma.users.findFirst({
+      where: { OR:[
+        {email:data.userName},
+        {userName:data.userName}
+      ]
+
+      },
     });
 
     if (!user) {
