@@ -33,7 +33,7 @@ v1.get("/get-post-by-postId/:postId", postController.getPostByIdPost);
 v1.delete("/delete-post/:postId", postController.deletePost);
 //user
 v1.put("/user",authentication,userController.update)
-v1.get("/get-all-user", userController.getAllUsers);
+v1.get("/get-all-user",authentication, userController.getAllUsers);
 v1.get("/get-userid/:userId",authentication, userController.getUser);
 v1.get("/post/:post-id/reply",authentication, postController.getReplyByPost)
 //replies
@@ -45,8 +45,8 @@ v1.post(
 );
 // v1.get("/post/status/:postId",postController.getPostByIdPost)
 //follow
-v1.get("/get-following",authentication, followController.checkFollowStatus);
-v1.post("/toggle-follow",authentication, followController.toggleFollow);
+v1.get("/follow/:userId",authentication, followController.checkFollowStatus);
+v1.post("/follow/:userId",authentication, followController.toggleFollow);
 v1.get("/search-users",authentication,searchControlller)
 
 v1.post("/post/:postId/like", authentication, likeController.likePost);
