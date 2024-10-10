@@ -6,6 +6,7 @@ import postService from "../services/postService";
 import {CustomError} from "../middlewares/errorHandler"
 import { postSchema } from "../utils/schema/schemaPost";
 import cloudinaryService from "../services/cloudinary-service";
+import { log } from "console";
 
 const prisma = new PrismaClient
 
@@ -106,16 +107,16 @@ async deletePost(req: RequestWithUser, res: Response){
     
   }
 }
-// async updatePost(req: RequestWithUser, res: Response){
-//  try {
-//   const id = Number(req.params.id);
-//   const value = await postSchema.validateAsync(req.body);
-//   const updatePost = await postService.updatePost({...value, id});
-//   res.json(updatePost);
-//  } catch (error) {
-  
-//  }
-// }
+async getReplyByPost (req: RequestWithUser, res: Response){
+  try {
+    const postId = Number(req.params.postId);
+    const reply = await postService.getReplyByPost(postId);
+    res.json(reply);
+  } catch (error) {
+    console.log(error);
+    
+  }
+}
 
 
 }

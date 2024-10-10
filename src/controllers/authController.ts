@@ -17,7 +17,7 @@ class AuthController {
       const user = await authService.login(value);
       res.json(user);
     } catch (error) {
-      console.error(error);
+      res.json(error)
     }
   }
   async checkLogin(req: Request, res: Response){

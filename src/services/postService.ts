@@ -1,4 +1,4 @@
-import { PrismaClient, Post } from "@prisma/client";
+import { PrismaClient, Post, Reply } from "@prisma/client";
 import { CreatePostDTO,UpdatePostDTO } from "../dto/post-dto";
 
 const prisma = new PrismaClient();
@@ -122,6 +122,22 @@ class PostService {
   async deletePost(id: number): Promise<Post | null> {
     return await prisma.post.delete({
       where: {id: id}
+    });
+  }
+
+  async getReplyByPost(postId: number): Promise<Reply[]>{
+    return await prisma.reply.findMany({
+      where: {
+        postId: postId,
+      },
+      include: {
+        author: {
+          select: {
+            userName: true,
+            fullName: true,
+          },
+        },
+      },
     });
   }
 }
